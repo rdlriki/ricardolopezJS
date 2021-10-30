@@ -7,4 +7,3 @@ let edad = anioactual-anio; //CALCULO LA EDAD
 
 console.log("Bienvenido " + nombre +"" + apellido); //IMPRIMO NOMBRE APELLIDO
 console.log("Si su cumpleaños ya pasó, usted tiene: " + edad); //IMPRIMO EDAD
-console.log("Pero si su cumpleaños no pasó, usted tiene: " + (edad-1)); //IMPRIMO EDAD -1
