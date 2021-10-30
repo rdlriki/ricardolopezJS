@@ -14,7 +14,7 @@ if (num1>num2){ //CONDICIONAL PARA INDICAR QUE NUMERO ES MAYOR, MENOS O SI SON I
     resta =  num1 - num2; //HAGO LA RESTA PARA QUE EL NUMERO SEA POSITIVO
     }
     else if (num1<num2) {
-        console.log("El segundo numero (" + num2 + ") es mayor al primero");
+        console.log("El segundo numero (" + num2 + ") es mayor al primero (" + num1 +")");
         resta = num2 - num1; //IDEM
     }
     else {
