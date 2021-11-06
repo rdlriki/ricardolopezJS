@@ -5,7 +5,7 @@ let num1=parseInt(prompt("Ingrese un numero")); //INGRESE NUMERO 1
 let num2=parseInt(prompt("Ingrese otro numero")); //INGRESE NUMERO 2
 let resta;
 
-usuario = nombre + apellido; //HAGO NOMBREAPELLIDO
+let usuario = nombre + apellido; //HAGO NOMBREAPELLIDO
 
 alert("Bienvenido " + usuario); //CARTEL DE ALERTA BIENVENIDO USUARIO
 
