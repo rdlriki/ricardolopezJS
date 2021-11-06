@@ -14,6 +14,7 @@ while (j!="") {
     j=prompt("Desea duplicar el numero ingreado? SALE CON ENTER!!!");
 }
 
+
 for ( k=0 ; k<i ; k=k+1 ){
     duplicar=duplicar*2;
 }
