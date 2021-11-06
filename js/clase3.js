@@ -6,10 +6,11 @@ let j=1;
 let k=0;
 
 console.log("El numero ingresado es: "+numero);
+j=prompt("Desea duplicar el numero ingreado? SALE CON ENTER!!!");
 
 while (j!="") {
-    i=i+1;
     numero=numero*2;
+    i=i+1;
     j=prompt("Desea duplicar el numero ingreado? SALE CON ENTER!!!");
 }
 
