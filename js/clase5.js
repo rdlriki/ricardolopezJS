@@ -72,14 +72,14 @@ if (modoPago==4){
     test=false;
     cuotas=parseInt(prompt("Ingrese la cantidad de cuotas: 1/3/6/9/12"));
     do{
-    if (cuotas==1 || cuotas==3 || cuotas==6 || cuotas==9 || cuotas==12){
-        test=false;
-    }
-    else {
-        test=true;
-        alert("Por favor, Ingrese la cantidad de cuotas: 1/3/6/9/12");
-        cuotas=parseInt(prompt("Ingrese la cantidad de cuotas: 1/3/6/9/12"));
-    }
+        if (cuotas==1 || cuotas==3 || cuotas==6 || cuotas==9 || cuotas==12){
+            test=false;
+        }
+        else {
+            test=true;
+            alert("Por favor, Ingrese la cantidad de cuotas: 1/3/6/9/12");
+            cuotas=parseInt(prompt("Ingrese la cantidad de cuotas: 1/3/6/9/12"));
+        }
     }while (test)
 
 
