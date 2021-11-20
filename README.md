@@ -12,5 +12,5 @@ Comision 19990
 - 17/11/21 - Entrega CLASE 6
     - Ademas, agrego el COMPLEMENTO de la clase 6
         - Ordenar un vector de objetos
-        - No entiendo por que se ingresa un vecor DESORDENADO y aun así, se imprime desordenado
+        - No entiendo por que se ingresa un vecor DESORDENADO y aun así, se imprime ordenado
     - El avance de proyecto es la CLASE 6 en sí misma ya que estoy trabajando sobre él agregando y modificando sentencias.
