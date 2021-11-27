@@ -14,3 +14,27 @@ Comision 19990
         - Ordenar un vector de objetos
         - No entiendo por que se ingresa un vecor DESORDENADO y aun así, se imprime ordenado
     - El avance de proyecto es la CLASE 6 en sí misma ya que estoy trabajando sobre él agregando y modificando sentencias.
+- 27/11/21 - Entrega CLASE 8 - DOM
+    - Prefije los intereses de las cuotas de tarjeta de credito
+    - Idem con el pago en efectivo, debito y MP
+    - Estos ultimos 2 no se ingresan por pantalla, ya estan fijos
+    - Se debe ingresar el monto
+        - JS toma el valor ingresado
+        - Se impacta en HTML
+        - Se da estilo al mensaje
+    - Luego ingresar el modo de pago
+        - Si es con efectivo / debito / MP:
+            - Se indica descuento / interes
+            - Se muestra el monto total
+            - Se impacta en HTML
+            - Se da estilo al mensaje
+        - Si es en Cuotas:
+            - Se debe ingresar una cuota VALIDA
+            - Se indica interes
+            - Se muestra el monto total
+            - Se impacta en HTML
+            - Se da estilo al mensaje
+        - En ambos casos, debe haber un monto <> de 0
+    - No use ningun INPUT
+    - Use ONCLIK para disparar las funciones de JS
+    - En si, modifique todo lo que ya tenia para usar DOM

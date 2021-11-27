@@ -36,5 +36,5 @@ for (let k = 0; k < 4; k++){
     }
 }
 
-//IMPRIMO EL VECTOR ORDENADO
+//IMPRIMO EL VECTel OR ORDENADO
 console.log(ordenados);
