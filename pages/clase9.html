@@ -24,39 +24,61 @@
         </nav>
     </main>
 
+    <div id="seccionBotonIngresar">
+        <button id="ingresarCuotas">Ingresar Intereses Cuotas</button>
+    </div>
+    <div id="seccionBotonModificar">
+        <button id="modificarCuotas">Modificar cuotas ya ingresadas</button>
+
+
+    <div id="seccionIngresarCuotas">
+        <h3>Ingresar los intereses de las cuotas</h3>
+        <p>Interes en  1 cuota en %: <input type="text" id="cuotaUno" value=""></p>
+        <p>Interes en  3 cuota en %: <input type="text" id="cuotaTres" value=""></p>
+        <p>Interes en  6 cuota en %: <input type="text" id="cuotaSeis" value=""></p>
+        <p>Interes en  9 cuota en %: <input type="text" id="cuotaNueve" value=""></p>
+        <p>Interes en 12 cuota en %: <input type="text" id="cuotaDoce" value=""></p>
+        <button id="cuotasIngresadas">Aceptar</button> 
+    </div>
+
     <div>
         PRIMERO INGRESE EL MONTO Y HAGA CLIC EN ENVIAR
         <p>Monto a pagar</p>
         <input type="text" id="monto">
-        <button id="monto()">Enviar</button>  <!-- al ingresar el monto, se llamala funcion -->
     </div>
 
-    <div>
+    <div id="seccionMedioPago">
         <br>
         <hr>
         <br>
-        Medio de pago:
-        <button onclick="efectivo()">Efectivo</button> <!-- Idem con efectivo -->
-        <button onclick="debito()">Débito</button> <!-- Idem con debito -->
-        <button onclick="mP()">MercadoPago</button> <!-- Idem con Mp -->
+        <p>Medio de pago:</p>
+        <button id="efectivo">Efectivo</button> <!-- Idem con efectivo -->
+        <button id="debito">Débito</button> <!-- Idem con debito -->
+        <button id="mP">MercadoPago</button> <!-- Idem con Mp -->
+        <button id="botonCuotas">Tarjeta Credito</button> <!-- Idem con Cuotas -->
+
     </div>
 
-    <div>
-
+    <div id="seccionPagarTarjeta">
         <br>
         <hr>
         <br>
-        Opcion Terjeta de credito:
-        Ingrese la cuota (1/3/6/9/12)
+        <p>Opcion Terjeta de credito:</p>
+        <p>Ingrese la cuota (1/3/6/9/12)</p>
         <input type="text" id="cuota"> <!-- Se debe ingresar en numeros la cuota -->
-        <button onclick="calculoCuota()">Ir a Pagar</button> <!-- Idem con Cuotas -->
+    </div>
+
+    <div>
+        <br>
+        <button id="reiniciar">REINICIAR</button>
+        <br>
     </div>
 
     <div id="mensaje">
 
     </div>
 
-    <script src="../js/clase8.js"></script>
+    <script src="../js/clase9.js"></script>
     
     <!-- ACA PEGO SCRIPT DE BOOSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"

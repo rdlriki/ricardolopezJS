@@ -38,3 +38,20 @@ Comision 19990
     - No use ningun INPUT
     - Use ONCLIK para disparar las funciones de JS
     - En si, modifique todo lo que ya tenia para usar DOM
+- 04/12/21 - Entrega CLASE 9 - Incorporar Eventos
+    - Reemplacé todos los ONCLICK por getElementByID
+    - Realizo LocalStorage con:
+        - ARRAY de los intereses de las cuotas de tarjeta de credito
+        - Utilizo JSON para guardarlos y para recuperarlos el dato
+    - DESAFIO COMPLEMENTARIO:
+        - Al momento de ingrsar el monto, se escribe en HTML
+        - IDEM cuando se selecciona EFECTIVO/DEBITO/MP
+        - IDEM cuanoo se seleccionan las CUOTAS 
+    - Segunda Entrega
+        - Agregue CARDS de Boostrap
+            - NO ESTA CONFIGURADO PARA DIFERENTES PANTALLAS, solo PC.
+        - Entiendo que la pagina "segundaentrega.html" cumple con todo lo requerido
+        - Realizo LocalStorage con:
+            - ARRAY de los intereses de las cuotas de tarjeta de credito
+            - ARRAY de los descuentos/intereses de los medios de pago Efectivo/Deb/MP
+            - Utilizo JSON para guardarlos y para recuperarlos el dato
