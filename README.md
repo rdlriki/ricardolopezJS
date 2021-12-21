@@ -55,3 +55,15 @@ Comision 19990
             - ARRAY de los intereses de las cuotas de tarjeta de credito
             - ARRAY de los descuentos/intereses de los medios de pago Efectivo/Deb/MP
             - Utilizo JSON para guardarlos y para recuperarlos el dato
+- 20/12/21 - Entrega Clase 12 - JQuery y Eventos
+    - A mi segunda entrega, le cambie varios getElementById por $("#")
+    - Utilice los eventos:
+        - click
+    - Utilice las propiedades:
+        - hide()
+        - show()
+        - append()
+    - Sigo utilizando DOM para algunas cosas
+        - En ella entrega anterior, me marcaba KEYCODE tachada (en desuso)
+        - En esta version lo reemplace por el evento Keypress, paso el evento como e.key y lo comparo de la siguiente manera: e.key === "Enter"
+    - Del Index saqué todas los links a ejercicios anteriores ya que me parece demas

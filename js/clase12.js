@@ -4,38 +4,108 @@ let apagarMedioPago = 0;
 let apagarTarjeta = 0;
 let pago = 0;
 
+$(document).ready(function(){
 
-/*INICIALIZO LA VARIABLE JSON PARA RECUPERAR EL ARREGLO INTERESES TARJETA CREDITO*/
-let cuotasInicialJSON = localStorage.getItem( "cuotasTarjetaCreditoJSON");
-let cuotasInicialParse = JSON.parse( cuotasInicialJSON);
+    /*************DETECTO BOTONES************************/
 
-/*INICIALIZO LA VARIABLE JSON PARA RECUPERAR EL ARREGLO EFECTIVO DEBITO MP*/
-let medioPagoInicialJSON = localStorage.getItem( "medioPagoEfeDebMpJSON");
-let medioPagoInicialParse = JSON.parse( medioPagoInicialJSON);
+    //BOTON INGRESAR Y MODIFICAR CUOTAS
+    $("#modificarCuotas").click(function(e){
+        //EVENTO CLIC EN BOTON INGRESAR/MODIFICADOR CUOTAS
 
-//SECCIONES MEDIO DE PAGO / PAGAR TARJETA
-let seccionMedioPago = document.getElementById("seccionMedioPago");
-let seccionPagarTarjeta = document.getElementById("seccionPagarTarjeta");
-let seccionPagar = document.getElementById("seccionPagar");
+        console.log(cuotasTarjetaCredito);
+        $("#seccionIngresarCuotas").show();
+    })
 
-/*************DETECTO BOTONES************************/
+    $("#modificarMedioPagoEfeDebMp").click(function(e){
+        //EVENTO CLIC EN BOTON INGRESAR/MODIFICADOR EFECTIVO/DEBITO/MP
+        console.log(medioPagoEfeDebMp);
+        $("#seccionIngresarMedioPagoEfeDebMp").show();
+    })
 
-//BOTON INGRESAR Y MODIFICAR CUOTAS
-let modificarCuotas = document.getElementById("modificarCuotas");
-let modificarMedioPagoEfeDebMp = document.getElementById("modificarMedioPagoEfeDebMp");
+    //BOTON ACEPTAR SECCION INGRESAR/MODIFICAR CUOTAS
+    $("#cuotasIngresadas").click(function(e){
+        /*CUANDO SE CARGAN LOS INTERESES DE LAS CUOTAS, SE GENERA EL ARRAY Y SE GUARDA LOCAL*/
+        console.log(cuotasTarjetaCredito);
+        let cuotasTarjetaCreditoJSON = JSON.stringify ( cuotasTarjetaCredito );
+        localStorage.setItem( "cuotasTarjetaCreditoJSON" , cuotasTarjetaCreditoJSON);
+    
+        console.log(cuotasTarjetaCreditoJSON);
+    
+        $("#seccionIngresarCuotas").hide();
+        {location.reload(true);}
 
-//BOTON ACEPTAR SECCION INGRESAR/MODIFICAR CUOTAS
-let cuotasIngresadas = document.getElementById ("cuotasIngresadas");
-let medioPagoIngresado = document.getElementById ("medioPagoIngresado");
+    })
 
-//BOTON DE EFECTIVO / DEBITO / MERCADO PAGO / TARJETA DE CREDITO
-let efectivo = document.getElementById ("efectivo");
-let debito = document.getElementById ("debito");
-let mercadoPago = document.getElementById ("mP");
-let mostrarCuotasTarjeta = document.getElementById("botonCuotas");
+    $("#medioPagoIngresado").click(function(e){
+        /*CUANDO SE CARGAN EL DESC./INTERES EFECTIVO/DEBITO/MP, SE GENERA EL ARRAY Y SE GUARDA LOCAL*/
+        console.log(medioPagoEfeDebMp);
+        let medioPagoEfeDebMpJSON = JSON.stringify ( medioPagoEfeDebMp );
+        localStorage.setItem( "medioPagoEfeDebMpJSON" , medioPagoEfeDebMpJSON);
+    
+        console.log(medioPagoEfeDebMpJSON);
+        $("#seccionIngresarMedioPagoEfeDebMp").hide();//MUESTRO BOTON MODIFICAR
+        {location.reload(true);}
 
-//BOTON REINICIAR
-let reiniciarCalculo = document.getElementById ("pagar")
+    })
+
+    //BOTON REINICIAR
+    $("#pagar").click(function(e){
+        /////******REINICIA LA OPERACION
+        {location.reload(true);}
+
+    })
+
+
+    //BOTON DE EFECTIVO / DEBITO / MERCADO PAGO / TARJETA DE CREDITO
+    $("#efectivo").click(function(e){
+        //AL SELECCIONAR EFECTIVO
+        console.log("Paga en Efectivo")
+        $("#efectivo").hide();
+        $("#debito").hide();
+        $("#mP").hide();
+        $("#botonCuotas").hide();
+    
+        mensajeNoCredito(0);
+    })
+
+    $("#debito").click(function(e){
+        //AL SELECCIONAR DEBITO, IDEM
+        console.log("Paga con Debito")
+        console.log("Paga en Efectivo")
+        $("#efectivo").hide();
+        $("#debito").hide();
+        $("#mP").hide();
+        $("#botonCuotas").hide();
+    
+        mensajeNoCredito(1);
+    })
+
+
+    $("#mP").click(function(e){
+        //AL SELECCIONAR MERCADO PAGO, IDEM
+        console.log("Paga con Mercado Pago")
+        console.log("Paga en Efectivo")
+        $("#efectivo").hide();
+        $("#debito").hide();
+        $("#mP").hide();
+        $("#botonCuotas").hide();
+    
+        mensajeNoCredito(2);
+    })
+
+    $("#botonCuotas").click(function(e){
+        $("#seccionPagarTarjeta").show();
+    
+        console.log("Paga en Efectivo")
+        $("#efectivo").hide();
+        $("#debito").hide();
+        $("#mP").hide();
+        $("#botonCuotas").hide();
+    
+        apagarTarjeta = 1;
+    })
+
+})
 
 /*PARA RECONOCER LOS BOTONES DE LAS CUOTAS SELECCIONADAS*/
 let quote1 = document.getElementById("unaCuotas");
@@ -51,29 +121,38 @@ let cuota6 = document.getElementById("cuotaSeis");
 let cuota9 = document.getElementById("cuotaNueve");
 let cuota12 = document.getElementById("cuotaDoce");
 
+/*************DETECTO EL MONTO A PAGAR************************/
+//EN PAGO SE GUARDA EL MONTO A PAGAR
+let pagarMonto = document.getElementById("monto");
+
 /*PARA RECONOCER CUANDO SE INGRESA EFCTIVO / DEBITO / MERCADO PAGO*/
 let elijeEfectivo = document.getElementById("pagoEfectivo");
 let elijeDebito = document.getElementById("pagoDebito");
 let elijeMp = document.getElementById("pagoMp");
 
+/*INICIALIZO LA VARIABLE JSON PARA RECUPERAR EL ARREGLO INTERESES TARJETA CREDITO*/
+let cuotasInicialJSON = localStorage.getItem( "cuotasTarjetaCreditoJSON");
+let cuotasInicialParse = JSON.parse( cuotasInicialJSON);
 
-/*************DETECTO EL MONTO A PAGAR************************/
-//EN PAGO SE GUARDA EL MONTO A PAGAR
-let pagarMonto = document.getElementById("monto");
+/*INICIALIZO LA VARIABLE JSON PARA RECUPERAR EL ARREGLO EFECTIVO DEBITO MP*/
+let medioPagoInicialJSON = localStorage.getItem( "medioPagoEfeDebMpJSON");
+let medioPagoInicialParse = JSON.parse( medioPagoInicialJSON);
+
 
 
 /*CONDICION QUE COMPRUEBA SI EL ARREGLO ESTÁ ALMACENADO O NO */
 /*SI EL ARREGLO NO ESTA CREADO */
 if (cuotasInicialParse==null){
-    mensajeInicioTartjeta.style.display = "block";
+    $("#mensajeInicioTartjeta").show();
     /*CREO EL ARREGLO AQUI GLOBAL Y LO INICIALIZO EN 0*/
     var cuotasTarjetaCredito = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]];
-    seccionModificarCuotas.style.display = "none"; //OCUTLO EL BOTON MODIFICAR
+    $("#seccionModificarCuotas").hide();//OCUTLO EL BOTON MODIFICAR
+
 } else {
     /*SI EL ARREGLO ESTA CREADO, LO RECUPERO*/
-    mensajeInicioTartjeta.style.display = "none"; //OCULTO BOTON INGRESAR 
-    seccionModificarCuotas.style.display = "block"; //MUESTRO BOTON MODIFICAR
-    seccionIngresarCuotas.style.display = "none"; //OCULTO BOTON INGRESAR 
+    $("#mensajeInicioTartjeta").hide(); //OCULTO BOTON INGRESAR
+    $("#seccionModificarCuotas").show(); //MUESTRO BOTON MODIFICAR
+    $("#seccionIngresarCuotas").hide(); //OCULTO BOTON INGRESAR 
 
     let enJSON = localStorage.getItem( "cuotasTarjetaCreditoJSON"); //LEO ARREGLO ALMACENADO EN MEMORIA
     //LA VARIABLE ES VAR YA QUE LA INICIALIZO AQUI Y PASA A SER GLOBAL
@@ -83,15 +162,16 @@ if (cuotasInicialParse==null){
 }
 
 if (medioPagoInicialParse==null){
-    mensajeInicioMedioPago.style.display = "block";
+    $("#mensajeInicioMedioPago").show(); //OCULTO BOTON INGRESAR
+
     /*CREO EL ARREGLO AQUI GLOBAL Y LO INICIALIZO EN 0*/
     var medioPagoEfeDebMp = [[0,0,0],[0,0,0],[0,0,0]];
-    seccionModificarMedioPagoEfeDebMp.style.display = "none"; //OCUTLO EL BOTON MODIFICAR
+    $("#seccionModificarMedioPagoEfeDebMp").hide(); //OCUTLO EL BOTON MODIFICAR
 } else {
     /*SI EL ARREGLO ESTA CREADO, LO RECUPERO*/
-    mensajeInicioMedioPago.style.display = "none";
-    seccionModificarMedioPagoEfeDebMp.style.display = "block"; //OCUTLO EL BOTON MODIFICAR
-    seccionIngresarMedioPagoEfeDebMp.style.display = "none"; //OCULTO BOTON INGRESAR 
+    $("#mensajeInicioMedioPago").hide(); //OCULTO BOTON INGRESAR
+    $("#seccionModificarMedioPagoEfeDebMp").show(); //MUESTRO BOTON MODIFICAR
+    $("#seccionIngresarMedioPagoEfeDebMp").hide(); //OCULTO BOTON INGRESAR 
 
     let enJSON = localStorage.getItem( "medioPagoEfeDebMpJSON"); //LEO ARREGLO ALMACENADO EN MEMORIA
     //LA VARIABLE ES VAR YA QUE LA INICIALIZO AQUI Y PASA A SER GLOBAL
@@ -103,56 +183,17 @@ if (medioPagoInicialParse==null){
 
 /*CONDICIONAL PARA OCULTAR / MOSTRAR SECCION DE SELECCION EL MEDIO DE PAGO */
 if (apagarMedioPago == 0){
-    seccionMedioPago.style.display = "none";
-    seccionPagar.style.display = "none";
-    seccionPagarTarjeta.style.display = "none";
+    $("#seccionMedioPago").hide();
+    $("#seccionPagar").hide();
+    $("#seccionPagarTarjeta").hide();
 }
 if (apagarTarjeta == 0){
-    seccionMedioPago.style.display = "none";
-    seccionPagarTarjeta.style.display = "none";
-    seccionPagar.style.display = "none";
+    $("#seccionMedioPago").hide();
+    $("#seccionPagarTarjeta").hide();
+    $("#seccionPagar").hide();
 }
 
-//EVENTO CLIC EN BOTON INGRESAR/MODIFICADOR CUOTAS
-modificarCuotas.addEventListener("click", function (e){
-    console.log(cuotasTarjetaCredito);
-    seccionIngresarCuotas.style.display = "block";
-})
 
-//EVENTO CLIC EN BOTON INGRESAR/MODIFICADOR EFECTIVO/DEBITO/MP
-modificarMedioPagoEfeDebMp.addEventListener("click", function (e){
-    console.log(medioPagoEfeDebMp);
-    seccionIngresarMedioPagoEfeDebMp.style.display = "block";
-})
-
-
-/*CUANDO SE CARGAN LOS INTERESES DE LAS CUOTAS, SE GENERA EL ARRAY Y SE GUARDA LOCAL*/
-cuotasIngresadas.addEventListener("click", function (e){
-    console.log(cuotasTarjetaCredito);
-    let cuotasTarjetaCreditoJSON = JSON.stringify ( cuotasTarjetaCredito );
-    localStorage.setItem( "cuotasTarjetaCreditoJSON" , cuotasTarjetaCreditoJSON);
-
-    console.log(cuotasTarjetaCreditoJSON);
-
-    seccionIngresarCuotas.style.display = "none"
-})
-
-/*CUANDO SE CARGAN EL DESC./INTERES EFECTIVO/DEBITO/MP, SE GENERA EL ARRAY Y SE GUARDA LOCAL*/
-medioPagoIngresado.addEventListener("click", function (e){
-    console.log(medioPagoEfeDebMp);
-    let medioPagoEfeDebMpJSON = JSON.stringify ( medioPagoEfeDebMp );
-    localStorage.setItem( "medioPagoEfeDebMpJSON" , medioPagoEfeDebMpJSON);
-
-    console.log(medioPagoEfeDebMpJSON);
-    seccionIngresarMedioPagoEfeDebMp.style.display = "none"; //MUESTRO BOTON MODIFICAR
-
-})
-
-/////******REINICIA LA OPERACION
-reiniciarCalculo.addEventListener("click", function(e){
-    {location.reload(true);}
-
-})
 
 
 //FUNCION PARA GENERAR EL ARREGLO - INGRESA EL INDICE Y EL VALOR DE LA CUOTA
@@ -183,24 +224,24 @@ function generarArrayMedioPago(j,medioPago){
 //*****************DETECTA EVENTOS AL APRETAR ENTER******************** 
 
 //AL SELECCIONAR EFECTIVO / DEBITO / MERCADO PAGO
-elijeEfectivo.addEventListener("keydown", function (e) {
-    if (e.keypress === 13) {  //reconoce cuando se apreta "Enter"
+elijeEfectivo.addEventListener("keypress", function (e) {
+    if (e.key  === "Enter") {  //reconoce cuando se apreta "Enter"
         let pagoEnEfectivo = e.target.value;
         console.log("Efectivo")
         generarArrayMedioPago(0, pagoEnEfectivo);
     }
 })
 
-elijeDebito.addEventListener("keydown", function (e) {
-    if (e.keypress === 13) {  //reconoce cuando se apreta "Enter"
+elijeDebito.addEventListener("keypress", function (e) {
+    if (e.key  === "Enter") {  //reconoce cuando se apreta "Enter"
         let cuotaTresPagos = e.target.value;
         console.log("Debito")
         generarArrayMedioPago(1, cuotaTresPagos);
     }
 })
 
-elijeMp.addEventListener("keydown", function (e) {
-    if (e.keypress === 13) {  //reconoce cuando se apreta "Enter"
+elijeMp.addEventListener("keypress", function (e) {
+    if (e.key  === "Enter") {  //reconoce cuando se apreta "Enter"
         let cuotaSeisPagos = e.target.value;
         console.log("Mercado Pago")
         generarArrayMedioPago(2, cuotaSeisPagos);
@@ -208,40 +249,40 @@ elijeMp.addEventListener("keydown", function (e) {
 });
 
 //AL INGRESAR LAS CUOTAS
-cuota1.addEventListener("keydown", function (e) {
-    if (e.keypress === 13) {  //reconoce cuando se apreta "Enter"
+cuota1.addEventListener("keypress", function (e) {
+    if (e.key  === "Enter") {  //reconoce cuando se apreta "Enter"
         let cuotaUnPagos = e.target.value;
         console.log("1 pago")
         generarArray(0, cuotaUnPagos);
     }
 })
 
-cuota3.addEventListener("keydown", function (e) {
-    if (e.keypress === 13) {  //reconoce cuando se apreta "Enter"
+cuota3.addEventListener("keypress", function (e) {
+    if (e.key  === "Enter") {  //reconoce cuando se apreta "Enter"
         let cuotaTresPagos = e.target.value;
         console.log("3 pago")
         generarArray(1, cuotaTresPagos);
     }
 })
 
-cuota6.addEventListener("keydown", function (e) {
-    if (e.keypress === 13) {  //reconoce cuando se apreta "Enter"
+cuota6.addEventListener("keypress", function (e) {
+    if (e.key  === "Enter") {  //reconoce cuando se apreta "Enter"
         let cuotaSeisPagos = e.target.value;
         console.log("6 pago")
         generarArray(2, cuotaSeisPagos);
     }
 });
 
-cuota9.addEventListener("keydown", function (e) {
-    if (e.keypress === 13) {  //reconoce cuando se apreta "Enter"
+cuota9.addEventListener("keypress", function (e) {
+    if (e.key  === "Enter") {  //reconoce cuando se apreta "Enter"
         let cuotaNuevePagos = e.target.value;
         console.log("9 pago")
         generarArray(3, cuotaNuevePagos);
     }
 });
 
-cuota12.addEventListener("keydown", function (e) {
-    if (e.keypress === 13) {  //reconoce cuando se apreta "Enter"
+cuota12.addEventListener("keypress", function (e) {
+    if (e.key  === "Enter") {  //reconoce cuando se apreta "Enter"
         let cuotaDocePagos = e.target.value;
         console.log("12 pago")
         generarArray(4, cuotaDocePagos);
@@ -250,8 +291,9 @@ cuota12.addEventListener("keydown", function (e) {
 
 
 //AL INGRESAR EL MONTO
-pagarMonto.addEventListener("keydown", function (e) {
-    if (e.keypress === 13) {  //reconoce cuando se apreta "Enter"
+pagarMonto.addEventListener("keypress", function (e) {
+    if (e.key  === "Enter") {  //reconoce cuando se apreta "Enter"
+        console.log("esta aca tambien")
         pago = e.target.value;
         console.log("Monto a Pagar")
         //GENERO EL PARRAFO Y LE DOY ESTILO
@@ -261,9 +303,10 @@ pagarMonto.addEventListener("keydown", function (e) {
         parrafo0.style.fontSize = "12px";
         
         //IMPACTOEN EL HTML
-        mensajeMonto.appendChild(parrafo0);
+        $("#mensajeMonto").append(parrafo0);
         //MUESTRO EL MEDIO DE PAGO
-        seccionMedioPago.style.display = "block";
+        $("#seccionMedioPago").show();
+
         apagarMedioPago = 1;
     }
 });
@@ -294,50 +337,6 @@ quote12.addEventListener("click", function(e){
 })
 
 
-//AL SELECCIONAR EFECTIVO
-efectivo.addEventListener("click", function(e){
-    console.log("Paga en Efectivo")
-    efectivo.style.display = "none";
-    debito.style.display = "none";
-    mP.style.display = "none";
-    mostrarCuotasTarjeta.style.display = "none";
-
-    mensajeNoCredito(0);
-})
-
-//AL SELECCIONAR DEBITO, IDEM
-debito.addEventListener("click", function(e){
-    console.log("Paga con Debito")
-    console.log("Paga en Efectivo")
-    efectivo.style.display = "none";
-    debito.style.display = "none";
-    mP.style.display = "none";
-    mostrarCuotasTarjeta.style.display = "none";
-    mensajeNoCredito(1);
-})
-
-//AL SELECCIONAR MERCADO PAGO, IDEM
-mP.addEventListener("click", function(e){
-    console.log("Paga con Mercado Pago")
-    console.log("Paga en Efectivo")
-    efectivo.style.display = "none";
-    debito.style.display = "none";
-    mP.style.display = "none";
-    mostrarCuotasTarjeta.style.display = "none";
-    mensajeNoCredito(2);
-})
-
-
-mostrarCuotasTarjeta.addEventListener("click", function(e){
-    seccionPagarTarjeta.style.display = "block";
-    console.log("Paga en Efectivo")
-    efectivo.style.display = "none";
-    debito.style.display = "none";
-    mP.style.display = "none";
-    mostrarCuotasTarjeta.style.display = "none";
-    apagarTarjeta = 1;
-})
-
 
 function mensajeNoCredito(modo){
     //GENERO LOS 2 PARRAGOS
@@ -347,6 +346,10 @@ function mensajeNoCredito(modo){
     parrafo1.style.fontSize = "12px";
     parrafo2.style.fontSize = "12px";
     parrafo3.style.fontSize = "12px";
+    parrafo1.style.color = "white";
+    parrafo2.style.color = "white";
+    parrafo3.style.color = "white";
+
 
     if (modo == 0){
         parrafo1.innerHTML ="Por pagar en efectivo, tiene un descuento del %" +medioPagoEfeDebMp[modo][0];
@@ -354,29 +357,29 @@ function mensajeNoCredito(modo){
         parrafo3.innerHTML ="Su importe es: $"+pago*medioPagoEfeDebMp[modo][2];
 
         //IMPACTO LOS PARRAFOS EN EL HTML
-        mensajeEfectivo.appendChild(parrafo1);
-        mensajeEfectivo.appendChild(parrafo2);
-        mensajeEfectivo.appendChild(parrafo3);
+        $("#mensajeEfectivo").append(parrafo1);
+        $("#mensajeEfectivo").append(parrafo2);
+        $("#mensajeEfectivo").append(parrafo3);
     }
     if (modo == 1){
         parrafo1.innerHTML ="Por pagar con débito, tiene un incremento del %"+medioPagoEfeDebMp[modo][0];
         parrafo2.innerHTML ="Siendo el interes: $"+pago*medioPagoEfeDebMp[modo][1];
         parrafo3.innerHTML ="Su importe es: $"+pago*medioPagoEfeDebMp[modo][2];
         //IMPACTO LOS PARRAFOS EN EL HTML
-        mensajeDebito.appendChild(parrafo1);
-        mensajeDebito.appendChild(parrafo2);
-        mensajeDebito.appendChild(parrafo3);
-        }
+        $("#mensajeDebito").append(parrafo1);
+        $("#mensajeDebito").append(parrafo2);
+        $("#mensajeDebito").append(parrafo3);
+    }
     if (modo == 2){
         parrafo1.innerHTML ="Por pagar com Mercado Pago, tiene un incremento del %"+medioPagoEfeDebMp[modo][0];
         parrafo2.innerHTML ="Siendo el interes: $"+pago*medioPagoEfeDebMp[modo][1];
         parrafo3.innerHTML ="Su importe es: $"+pago*medioPagoEfeDebMp[modo][2];    
         //IMPACTO LOS PARRAFOS EN EL HTML
-        mensajeMp.appendChild(parrafo1);
-        mensajeMp.appendChild(parrafo2);
-        mensajeMp.appendChild(parrafo3);
+        $("#mensajeMp").append(parrafo1);
+        $("#mensajeMp").append(parrafo2);
+        $("#mensajeMp").append(parrafo3);
     }
-    seccionPagar.style.display = "block";
+    $("#seccionPagar").show();
 
 }
 
@@ -388,6 +391,9 @@ function mensajeCredito(cuota){
     parrafo4.style.fontSize = "12px";
     parrafo5.style.fontSize = "12px";
     parrafo6.style.fontSize = "12px";
+    parrafo4.style.color = "white";
+    parrafo5.style.color = "white";
+    parrafo6.style.color = "white";
 
     if (cuota == 1){
         parrafo4.innerHTML ="El pago con tarjeta en 1 cuota tiene un interes del %"+(cuotasTarjetaCredito[0][0]);
@@ -416,10 +422,9 @@ function mensajeCredito(cuota){
     }
 
     //IMPACTO EN EL HTML
-    mensajeCuotas.appendChild(parrafo4);
-    mensajeCuotas.appendChild(parrafo5);
-    mensajeCuotas.appendChild(parrafo6);
+    $("#mensajeCuotas").append(parrafo4);
+    $("#mensajeCuotas").append(parrafo5);
+    $("#mensajeCuotas").append(parrafo6);
 
-    seccionPagar.style.display = "block";
-
+    $("#seccionPagar").show();
 }
