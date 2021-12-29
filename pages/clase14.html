@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS DE BOOSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>AJAX - 19900</title>
+</head>
+
+<body>
+    <main>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.html">Volver HOME</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </main>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div id="mensajeInicioTartjeta">
+                <h2 class="text-center">NO SE HAN CARGADO LOS % DE INTERES DE LAS TAREJTAS</h2>
+            </div>
+            <div id="mensajeInicioMedioPago">
+                <h2 class="text-center">NO SE HAN CARGADO DESCUENTO Y % DE MEDIO DE PAGO</h2>
+            </div>
+            <div class="col-3" id="seccionModificarCuotas">
+                <div class="card border-1 border-danger m-auto" style="height: 12rem">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title d-flex justify-content-center">MODIFICAR CUOTAS</h5>
+                        <p class="card-text text-center">Si desea modificar los intereses de las cuotas de tarjeta de
+                            credito, ingresar.</p>
+                        <a class="btn border-dark btn-primary d-flex justify-content-center align-items-end mt-auto"
+                            id="modificarCuotas">Modificar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3" id="seccionModificarMedioPagoEfeDebMp">
+                <div class="card border-1 border-danger m-auto" style="height: 12rem">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title d-flex justify-content-center">MODIFICAR DESC/INT</h5>
+                        <p class="card-text text-center">Si desea modificar el descuento / intereses de
+                            Efectivo/Debito/Mercado Pago, ingresar</p>
+                        <a class="btn border-dark btn-primary d-flex justify-content-center align-items-end mt-auto"
+                            id="modificarMedioPagoEfeDebMp">Modificar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3 mt-4" id="seccionIngresarCuotas">
+                <div class="card m-auto" style="width: 18rem;">
+                    <div class="card-body bg-dark text-light rounded-2 d-flex flex-column">
+                        <h5 class="card-title d-flex justify-content-center">INGRESAR/MODIFICAR</h5>
+                        <p class="card-text text-center">Ingrese los intereses de cada cuota en PORCENTAJES "%"</p>
+
+                        <div class="mb-1">
+                            <label for="cuotaUno" class="form-label">De 1 Pago:</label>
+                            <input type="text" class="form-control" id="cuotaUno" placeholder="%">
+                        </div>
+                        <div class="mb-1">
+                            <label for="cuotaTres" class="form-label">De 3 Cuotas</label>
+                            <input type="text" class="form-control" id="cuotaTres" placeholder="%">
+                        </div>
+                        <div class="mb-1">
+                            <label for="cuotaSeis" class="form-label">De 6 Cuotas</label>
+                            <input type="text" class="form-control" id="cuotaSeis" placeholder="%">
+                        </div>
+                        <div class="mb-1">
+                            <label for="cuotaNueve" class="form-label">De 9 Cuotas</label>
+                            <input type="text" class="form-control" id="cuotaNueve" placeholder="%">
+                        </div>
+                        <div class="mb-1">
+                            <label for="cuotaDoce" class="form-label">De 12 Cuotas</label>
+                            <input type="text" class="form-control" id="cuotaDoce" placeholder="%">
+                        </div>
+                        <div class="mt-3">
+                            <a class="btn btn-primary border-light  d-flex justify-content-center align-items-end mt-auto"
+                                id="cuotasIngresadas">Ingresar / Modificar</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-3 mt-4" id="seccionIngresarMedioPagoEfeDebMp">
+                <div class="card m-auto" style="width: 18rem;">
+                    <div class="card-body bg-dark text-light rounded-2">
+                        <h5 class="card-title d-flex justify-content-center">INGRESAR/MODIFICAR</h5>
+                        <p class="card-text text-center">Ingrese los Descuento/Interes de cada medio de pago en
+                            PORCENTAJES "%"</p>
+                        <div class="mb-1">
+                            <label for="pagoEfectivo" class="form-label">Descuento Efectivo:</label>
+                            <input type="text" class="form-control" id="pagoEfectivo" placeholder="%">
+                        </div>
+                        <div class="mb-1">
+                            <label for="pagoDebito" class="form-label">Interes Débito</label>
+                            <input type="text" class="form-control" id="pagoDebito" placeholder="%">
+                        </div>
+                        <div class="mb-1">
+                            <label for="pagoMp" class="form-label">Interes MP</label>
+                            <input type="text" class="form-control" id="pagoMp" placeholder="%">
+                        </div>
+                        <div class="mt-3">
+                            <a class="btn border-light btn-primary d-flex justify-content-center align-items-end mt-auto"
+                                id="medioPagoIngresado">Ingresar / Modificar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col m-4" id="seccionMonto">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body bg-dark text-light rounded-2">
+                        <h5 class="card-title">PAGAR</h5>
+                        <p class="card-text">Por favor, ingrese el monto a pagar</p>
+
+                        <div class="mb-3">
+                            <label for="monto" class="form-label">Monto</label>
+                            <input type="text" class="form-control" id="monto" placeholder="ARS $$$">
+                        </div>
+                        <div id="mensajeMonto">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="seccionMedioPago">
+            <div class="row" >
+                <div class="col-2 ms-4">
+                    <div class="card bg-secondary text-light" style="height: auto">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-center">EFECTIVO</h5>
+                            <div class="card-text m-auto text-align-center" id="mensajeEfectivo">
+
+                            </div>
+                            <a class="btn border-dark mt-auto btn-primary" id="efectivo">Seleccionar</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 ms-2">
+                    <div class="card bg-secondary text-light" style="height: auto">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-center">DEBITO</h5>
+                            <div class="card-text text-align-center" id="mensajeDebito">
+
+                            </div>
+                            <a class="btn border-dark mt-auto btn-primary " id="debito">Seleccionar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 ms-2">
+                    <div class="card bg-secondary text-light" style="height: auto">
+                        <div class="card-body m-auto d-flex flex-column">
+                            <h5 class="card-title text-center">MERCADO PAGO</h5>
+                            <div class="card-text text-align-center" id="mensajeMp">
+
+                            </div>
+                            <a class="btn border-dark mt-auto btn-primary" id="mP">Seleccionar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 ms-2">
+                    <div class="card bg-secondary text-light" style="height: auto">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-text text-align-centerr">TARJETA DE CREDITO</h5>
+
+                            <a class="btn border-dark mt-auto btn-primary" id="botonCuotas">Seleccionar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col m-4" id="seccionPagarTarjeta">
+            <div class="card " style="width: 40rem;">
+                <div class="card-body bg-dark text-light rounded-2">
+                    <h5 class="card-title">TARJETA DE CREDITO</h5>
+                    <p class="card-text">Seleccione la cantidad de cuotas:</p>
+
+                    <div class="mb-3 container-fluid d-flex justify-content-center m-1">
+                        <a class="btn btn-primary m-2" id="unaCuotas">1 PAGO</a>
+                        <a class="btn btn-primary m-2" id="tresCuotas">3 CUOTAS</a>
+                        <a class="btn btn-primary m-2" id="seisCuotas">6 CUOTAS</a>
+                        <a class="btn btn-primary m-2" id="nueveCuotas">9 CUOTAS</a>
+                        <a class="btn btn-primary m-2" id="doceCuotas">12 CUOTAS</a>
+
+                    </div>
+                    <div class="card-text text-align-center" id="mensajeCuotas">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="container-fluid">
+        <div class="m-4" id="seccionPagar">
+            <button type="button" class="btn btn-success" id="pagar">Pagar</button>
+        </div>
+        <div id="mensajeGracias">
+
+
+
+        </div>
+        <div class="m-4" id="seccionReiniciar">
+            <button type="button" class="btn btn-info" id="reiniciar">Reiniciar</button>
+        </div>
+    </footer>
+
+
+    <script src="../js/clase14.js"></script>
+
+    <!-- ACA PEGO SCRIPT DE BOOSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

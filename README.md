@@ -67,3 +67,15 @@ Comision 19990
         - En ella entrega anterior, me marcaba KEYCODE tachada (en desuso)
         - En esta version lo reemplace por el evento Keypress, paso el evento como e.key y lo comparo de la siguiente manera: e.key === "Enter"
     - Del Index saqué todas los links a ejercicios anteriores ya que me parece demas
+- 28/12/21 - Entrega Clase 13 y 14 (Animaciones y Ajax)
+    - En la clase 13, reemplace algunos HIDE/SHOW por fadeIn/delay/toogle
+    - Tambien utilicé la propiedad CSS desde JS
+        - Cambiar color de letra, estilo de letra, italica
+    - En la clase 14:
+        - Cuando se realiza el pago, aparece:
+            - El nombre de Harry
+            - Un mensaje de agradecimiento
+            - La foto de Harry Potter
+            - Otro mensaje sobre Harry Potter
+        - Aparece un boton para reiniciar
+        - En este ejemplo, utilizo GET y no AJAX
