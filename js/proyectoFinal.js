@@ -53,7 +53,7 @@ $(document).ready(function(){
     $("#pagar").click(function () {
 
         //CARGO LA URL DE HARRY POTTER
-        let urlHP = "http://hp-api.herokuapp.com/api/characters/students"
+        let urlHP = "https://hp-api.herokuapp.com/api/characters/students"
 
         //TRAIGO TODOS LOS DATOS DE LA PAGINA DE HARRY POTTER
         $.get(urlHP, function (datos) {
