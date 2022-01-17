@@ -79,3 +79,24 @@ Comision 19990
             - Otro mensaje sobre Harry Potter
         - Aparece un boton para reiniciar
         - En este ejemplo, utilizo GET y no AJAX
+- 16/01/22 - Entrega del Proyecto Final (FELIZ AÑO!!!!)
+    - Como le comenté a mi tutor, durante toda la cursada estuve trabajando sobre el proyecto
+    - El avance lo pueden ver en cada uno de los HTML y JS de mi GitHub
+    - Como primera medida, hay que ingresar los intereses y descuentos solicitados.
+    - Estos valores se guardan localmente para poder aplicarlos de acuerdo al medio de pago.
+    - Una vez ingresados, podrá modificarlo cuando lo desee.
+    - En esta ultima versión, realicé:
+        - Agregue el archivo CSS:
+            - Agregue imagenes de fondo para determinadas secciones.
+            - Estilado de las fuentes.
+            - Retiré todos los STYLE del JS y del HTML.
+        - Cuando se ingresa el monto, desaparece la opcion de ingresar uno nuevo.
+        - Cuando se seleeciona un medio de pago, desaparecen los anteriores.
+        - Al momento de realizar el pago, aparecen personajes de HP
+            - Dependiendo el medio de pago, aparece un personaje diferente.
+            - La imagen y el texto que aparece tienen Style.
+    - En el resto del README.MD se encuentran los detalles de cada presentación.
+    - Espero haber cumplido con los requisitos.
+
+    - Aprobecho para agradecer la predisposicion y el tiempo de los after.
+    - Muchas gracias!!! Y que sea un gran año para todos/as!!!!

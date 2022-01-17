@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+*}
+
+#mensajeInicial{
+    background-image: url(../Multimedia/IMG/paginaCobro.jpg);
+    background-size: cover ;  /* COMO LA IMAGEN ES PEQUEÑA, LA PONGO COVER*/
+    background-position: center;    /*CENTRADA*/
+    background-repeat: no-repeat;   /*SIN REPETIR*/
+    width: 100%;
+    height: 400px;
+}
+
+#seccionMonto{
+    background-image: url(../Multimedia/IMG/monto.jpg);
+    background-size: cover ;  /* COMO LA IMAGEN ES PEQUEÑA, LA PONGO COVER*/
+    background-position: center;    /*CENTRADA*/
+    background-repeat: no-repeat;   /*SIN REPETIR*/
+    width: 100%;
+    height: 350px;
+}
+
+#seccionIngresarCuotas{
+    background-image: url(../Multimedia/IMG/pagoTarjeta.jpg);
+    background-size: cover ;  /* COMO LA IMAGEN ES PEQUEÑA, LA PONGO COVER*/
+    background-position: center;    /*CENTRADA*/
+    background-repeat: no-repeat;   /*SIN REPETIR*/
+    width: 100%;
+    height: auto;
+}
+
+#seccionIngresarMedioPagoEfeDebMp{
+    background-image: url(../Multimedia/IMG/descuentosIntereses.jpg);
+    background-size: cover ;  /* COMO LA IMAGEN ES PEQUEÑA, LA PONGO COVER*/
+    background-position: center;    /*CENTRADA*/
+    background-repeat: no-repeat;   /*SIN REPETIR*/
+    width: 100%;
+    height: auto;
+}
+
+#seccionMedioPago{
+    background-image: url(../Multimedia/IMG/seccionPago.png);
+    background-size: contain ;  /* COMO LA IMAGEN ES PEQUEÑA, LA PONGO COVER*/
+    background-position: left bottom;    /*CENTRADA*/
+    background-repeat: no-repeat;   /*SIN REPETIR*/
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: auto;
+}
+
+#seccionModificarCuotas,#seccionModificarMedioPagoEfeDebMp{
+    height: 200px;
+    width: 350px;
+    padding:10px;
+    margin: 10px;
+}
+
+#contenedorModificadores{
+    height: 180px;
+    width: 350px;
+}
+
+#cardMonto{
+    width: 300px;
+    height: auto;
+    margin: 30px;
+}
+
+#cardIngresarCuotas,#cardDescuentoIntereses{
+    width: 300px;
+    height: auto;
+    margin: 30px;
+}
+
+#mensajeMonto{
+    color: violet;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#mensajeEfectivo,#mensajeDebito,#mensajeMp,#mensajeCuotas{
+    color: white;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#cardMedioPago{
+    height: auto;
+    width: 230px;
+    margin: 10px
+}
+
+#seccionPagarTarjeta{
+    width: 100%;
+}
+
+#mensajeGracias img{
+    width: 200px;
+    height: auto;
+}
+
+#mensajeGracias p{
+    font-family: calibri;
+    font-size: 15px;
+    font-style: italic;
+}
+
+#mensajeInicial p{
+    margin-left: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+
+#mensajeInicial ul li{
+    font-style: italic;
+    font-size: 18px;
+}
+
+#mensajeInicial h5{
+    margin-left: 12px;
+}
+

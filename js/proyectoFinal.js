@@ -3,6 +3,7 @@ let cuotas;
 let apagarMedioPago = 0;
 let apagarTarjeta = 0;
 let pago = 0;
+let personajeMostrado = 0;
 
 $(document).ready(function(){
 
@@ -60,7 +61,7 @@ $(document).ready(function(){
             //RECORRO LOS DATOS
             for (let personajes of datos) {
                 //CUANDO ENCUENTRO HARRY POTTER, CARGO EL NOMBRE Y LA FOTO Y EL MENSAJE
-                if (personajes.name === "Harry Potter") {
+                if (personajes.name === "Harry Potter" && personajeMostrado === 1) {
                     $("#mensajeGracias").fadeIn(400).append(`<div>
                                                         <h3> ${ personajes.name } </h3>
                                                         <h4> y nosotros le agradecemos su compra </h4>
@@ -68,8 +69,33 @@ $(document).ready(function(){
                                                         <p>(mira como te mira ${ personajes.name })</p>
                                                 </div>
                                                         `).delay(5000);
-                
-
+                }
+                if (personajes.name === "Hermione Granger" && personajeMostrado === 2) {
+                    $("#mensajeGracias").fadeIn(400).append(`<div>
+                                                        <h3> ${ personajes.name } </h3>
+                                                        <h4> y nosotros le agradecemos su compra </h4>
+                                                        <img src="${personajes.image}"></img>
+                                                        <p>(mira como te mira ${ personajes.name })</p>
+                                                </div>
+                                                        `).delay(5000);
+                }
+                if (personajes.name === "Ron Weasley" && personajeMostrado === 3) {
+                    $("#mensajeGracias").fadeIn(400).append(`<div>
+                                                        <h3> ${ personajes.name } </h3>
+                                                        <h4> y nosotros le agradecemos su compra </h4>
+                                                        <img src="${personajes.image}"></img>
+                                                        <p>(mira como te hechiza ${ personajes.name })</p>
+                                                </div>
+                                                        `).delay(5000);
+                }
+                if (personajes.name === "Draco Malfoy" && personajeMostrado === 4) {
+                    $("#mensajeGracias").fadeIn(400).append(`<div>
+                                                        <h3> ${ personajes.name } </h3>
+                                                        <h4> y nosotros le agradecemos su compra </h4>
+                                                        <img src="${personajes.image}"></img>
+                                                        <p>(mira como te mira ${ personajes.name })</p>
+                                                </div>
+                                                        `).delay(5000);
                 }
                 
             }
@@ -92,22 +118,23 @@ $(document).ready(function(){
         //AL SELECCIONAR EFECTIVO
         console.log("Paga en Efectivo")
         $("#efectivo").fadeOut(500);
-        $("#debito").fadeOut(500);
-        $("#mP").fadeOut(500);
-        $("#botonCuotas").fadeOut(500);
- 
+        $("#cardDebito").fadeOut(500);
+        $("#cardMp").fadeOut(500);
+        $("#cardTarjeta").fadeOut(500);
+    
+        personajeMostrado = 1;
         mensajeNoCredito(0);
     })
 
     $("#debito").click(function(e){
         //AL SELECCIONAR DEBITO, IDEM
         console.log("Paga con Debito")
-        console.log("Paga en Efectivo")
-        $("#efectivo").fadeOut(500);
         $("#debito").fadeOut(500);
-        $("#mP").fadeOut(500);
-        $("#botonCuotas").fadeOut(500);
+        $("#cardEfectivo").fadeOut(500);
+        $("#cardMp").fadeOut(500);
+        $("#cardTarjeta").fadeOut(500);
     
+        personajeMostrado = 2;
         mensajeNoCredito(1);
     })
 
@@ -115,24 +142,24 @@ $(document).ready(function(){
     $("#mP").click(function(e){
         //AL SELECCIONAR MERCADO PAGO, IDEM
         console.log("Paga con Mercado Pago")
-        console.log("Paga en Efectivo")
-        $("#efectivo").fadeOut(500);
-        $("#debito").fadeOut(500);
         $("#mP").fadeOut(500);
-        $("#botonCuotas").fadeOut(500);
+        $("#cardEfectivo").fadeOut(500);
+        $("#cardDebito").fadeOut(500);
+        $("#cardTarjeta").fadeOut(500);
     
+        personajeMostrado = 3;
         mensajeNoCredito(2);
     })
 
     $("#botonCuotas").click(function(e){
         $("#seccionPagarTarjeta").fadeIn(500);
-    
-        console.log("Paga en Efectivo")
-        $("#efectivo").fadeOut(500);
-        $("#debito").fadeOut(500);
-        $("#mP").fadeOut(500);
+        console.log("Paga con Tarjeta")
         $("#botonCuotas").fadeOut(500);
+        $("#cardEfectivo").fadeOut(500);
+        $("#cardDebito").fadeOut(500);
+        $("#cardMp").fadeOut(500);
     
+        personajeMostrado = 4;
         apagarTarjeta = 1;
     })
 
@@ -331,11 +358,14 @@ pagarMonto.addEventListener("keypress", function (e) {
         //GENERO EL PARRAFO Y LE DOY ESTILO
         let parrafo0 = document.createElement("p");
         parrafo0.innerHTML ="Su importe es de: $"+pago;
+        $("#monto").fadeOut(500);
 
 
         //IMPACTOEN EL HTML
         $("#mensajeMonto").append(parrafo0).delay(1000);
-
+        $("#mensajeMonto").css({ "color": "violet",
+                                "font-size": "12px",
+                                "font-weight": "bold"});
         //MUESTRO EL MEDIO DE PAGO
         $("#seccionMedioPago").fadeIn(500);
 
@@ -410,6 +440,10 @@ function mensajeNoCredito(modo){
         $("#mensajeEfectivo").append(parrafo1);
         $("#mensajeEfectivo").append(parrafo2);
         $("#mensajeEfectivo").append(parrafo3);
+        $("#mensajeEfectivo").css({"color": "white",
+                                "font-size": "12px",
+                                "font-style": "italic",
+                                "font-weight": "bold"});
     }
     if (modo == 1){
         parrafo1.innerHTML ="Por pagar con débito, tiene un incremento del %"+medioPagoEfeDebMp[modo][0];
@@ -419,6 +453,10 @@ function mensajeNoCredito(modo){
         $("#mensajeDebito").append(parrafo1);
         $("#mensajeDebito").append(parrafo2);
         $("#mensajeDebito").append(parrafo3);
+        $("#mensajeDebito").css({   "color": "white",
+                                    "font-size": "12px",
+                                    "font-style": "italic",
+                                    "font-weight": "bold"});
     }
     if (modo == 2){
         parrafo1.innerHTML ="Por pagar com Mercado Pago, tiene un incremento del %"+medioPagoEfeDebMp[modo][0];
@@ -428,6 +466,10 @@ function mensajeNoCredito(modo){
         $("#mensajeMp").append(parrafo1);
         $("#mensajeMp").append(parrafo2);
         $("#mensajeMp").append(parrafo3);
+        $("#mensajeMp").css({   "color": "white",
+                                "font-size": "12px",
+                                "font-style": "italic",
+                                "font-weight": "bold"});
     }
     $("#seccionPagar").show();
 
@@ -469,6 +511,11 @@ function mensajeCredito(cuota){
     $("#mensajeCuotas").append(parrafo4);
     $("#mensajeCuotas").append(parrafo5);
     $("#mensajeCuotas").append(parrafo6);
+    $("#mensajeCuotas").css({   "color": "white",
+                                "font-size": "12px",
+                                "font-style": "italic",
+                                "font-weight": "bold"});
+    
 
     $("#seccionPagar").show();
 }
