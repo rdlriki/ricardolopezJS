@@ -52,6 +52,8 @@ $(document).ready(function(){
     //BOTON PAGAR
     $("#pagar").click(function () {
 
+        $("#pagar").fadeOut(500); //Desaparezco el boton PAGAR
+
         //CARGO LA URL DE HARRY POTTER
         let urlHP = "https://hp-api.herokuapp.com/api/characters/students"
 
@@ -115,14 +117,14 @@ $(document).ready(function(){
 
     //BOTON DE EFECTIVO / DEBITO / MERCADO PAGO / TARJETA DE CREDITO
     $("#efectivo").click(function(e){
-        //AL SELECCIONAR EFECTIVO
+        //AL SELECCIONAR EFECTIVO, desaparezco los otros medios de pago
         console.log("Paga en Efectivo")
         $("#efectivo").fadeOut(500);
         $("#cardDebito").fadeOut(500);
         $("#cardMp").fadeOut(500);
         $("#cardTarjeta").fadeOut(500);
     
-        personajeMostrado = 1;
+        personajeMostrado = 1; //indice para mostrar el personaje del saludo final
         mensajeNoCredito(0);
     })
 

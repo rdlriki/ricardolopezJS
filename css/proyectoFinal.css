@@ -42,10 +42,10 @@
 
 #seccionMedioPago{
     background-image: url(../Multimedia/IMG/seccionPago.png);
-    background-size: contain ;  /* COMO LA IMAGEN ES PEQUEÑA, LA PONGO COVER*/
-    background-position: left bottom;    /*CENTRADA*/
+    background-size: contain ;  
+    background-position: left bottom;    /*LA UBICO ABAJO A LA IZQUIERDA*/
     background-repeat: no-repeat;   /*SIN REPETIR*/
-    width: 100%;
+    width: 100%;  /*DEFINO ANCHO Y ALTO*/
     height: 250px;
     display: flex;
     justify-content: space-around;
@@ -53,6 +53,7 @@
     margin: auto;
 }
 
+/*LE DOY ESTILO A LAS SECCIONES*/
 #seccionModificarCuotas,#seccionModificarMedioPagoEfeDebMp{
     height: 200px;
     width: 350px;
@@ -60,29 +61,34 @@
     margin: 10px;
 }
 
+/*LE DEOY ESTILO AL CONTENEDOR DE LAS MODIFICACIONES DE CUOTAS*/
 #contenedorModificadores{
     height: 180px;
     width: 350px;
 }
 
+/*LE DOY ESTILO A LA TARJETA DE MONTO*/
 #cardMonto{
     width: 300px;
     height: auto;
     margin: 30px;
 }
 
+/*LE DOY ESTILO A LAS TARJETAS DE INGRESAR CUOTAS Y LA DE DESCUENTOS*/
 #cardIngresarCuotas,#cardDescuentoIntereses{
     width: 300px;
     height: auto;
     margin: 30px;
 }
 
+/*LE DOY ESTILO AL TEXTO QUE APARECE EN EL MONTO INGRESADO*/
 #mensajeMonto{
     color: violet;
     font-size: 12px;
     font-weight: bold;
 }
 
+/*LE DOY ESTILO AL MENSAJE QUE APARECE CUANDO SE SELECCIONA EL MODO DE PAGO*/
 #mensajeEfectivo,#mensajeDebito,#mensajeMp,#mensajeCuotas{
     color: white;
     font-size: 12px;
@@ -100,6 +106,7 @@
     width: 100%;
 }
 
+/*FIJO UN ANCHO Y ALTO PARA LAS IMAGENES DE LOS PERSONAJES DE HP*/
 #mensajeGracias img{
     width: 200px;
     height: auto;
